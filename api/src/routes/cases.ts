@@ -7,8 +7,11 @@ const router = express.Router();
 router.get('/', [],  async (req: Request, res: Response, next: NextFunction) => {
     const isReviewed: boolean = (req.query.isReviewed == 'true');
     const query = req.query.isReviewed ? {'isReviewed': isReviewed} : {};
+
+    const num: number = Number(req.query.number);
     try {
-        const response = await CaseModel.find(query).populate('condition').populate('user', '_id name email date').exec();
+        let response = await CaseModel.find(query).populate('condition').populate('user', '_id name email date').exec();
+        if (num) response = response.slice(0, num);
         return res.status(200).send(response);
     } catch(err) {
         return next(new ErrorHandler(422, err.toString()));
