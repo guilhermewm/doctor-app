@@ -4,23 +4,13 @@ import Joi from "@hapi/joi";
 import jwt from "jsonwebtoken";
 import { userModel } from "../models/user";
 import { ErrorHandler } from "../utils/ErrorHandler";
+import { loginValidator, registerValidator, validateInfo } from "../utils/validations";
 
 const router = express.Router();
 
-const registerValidator = Joi.object({
-    name: Joi.string().min(6).max(255).required(),
-    email: Joi.string().min(6).max(255).required().email(),
-    password: Joi.string().min(6).max(1024).required(),
-});
-
-const loginValidator = Joi.object({
-    name: Joi.string().min(6).max(255).required(),
-    email: Joi.string().min(6).max(255).required().email(),
-    password: Joi.string().min(6).max(1024).required(),
-});
-
 router.post('/login', [],  async (req: Request, res: Response, next: NextFunction) => {
-    const { error } = loginValidator.validate(req.body);
+    const { error } = validateInfo(loginValidator, req.body);
+    console.log(error);
     if (error) return next(new ErrorHandler(400, error.details[0].message));
 
     try {        
@@ -45,7 +35,7 @@ router.post('/login', [],  async (req: Request, res: Response, next: NextFunctio
 });
 
 router.post("/register", [], async (req: Request, res: Response, next: NextFunction) => {
-    const { error } = registerValidator.validate(req.body);
+    const { error } = validateInfo(registerValidator, req.body);
     if (error) return next(new ErrorHandler(400, error.details[0].message));
     try {
         const validateEmail = await userModel.findOne({ email: req.body.email }).exec();
