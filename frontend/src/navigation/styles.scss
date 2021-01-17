@@ -1,0 +1,14 @@
+@import '../Components/Styles/colors.scss';
+
+.not-found {
+  width: 100%;
+  text-align: center;
+  padding: 30px;
+
+  > .link {
+    background: $primary-color;
+    color: $base-color;
+    border-radius: 5px;
+    padding: 5px;
+  }
+}
