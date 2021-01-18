@@ -2,22 +2,25 @@ import bodyParser from 'body-parser';
 import express, { NextFunction, Request, Response } from 'express';
 import mongoose from 'mongoose';
 import dotenv from "dotenv";
+import cors from 'cors';
 import { caseRoutes } from './routes/cases';
 import { conditionRoutes } from './routes/conditions';
 import { verifyToken } from './routes/validate-token';
 import { ErrorHandler, handleError } from './utils/ErrorHandler';
 import { authRoutes } from './routes/auth';
 
+
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
 }
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 const MONGODB = process.env.URL_MONGO || '';
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cors());
 app.use("/user", authRoutes);
 app.use("/cases", verifyToken, caseRoutes);
 app.use("/conditions", verifyToken, conditionRoutes);

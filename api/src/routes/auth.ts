@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.post('/login', [],  async (req: Request, res: Response, next: NextFunction) => {
     const { error } = validateInfo(loginValidator, req.body);
-    console.log(error);
+
     if (error) return next(new ErrorHandler(400, error.details[0].message));
 
     try {        
@@ -28,7 +28,15 @@ router.post('/login', [],  async (req: Request, res: Response, next: NextFunctio
             process.env.TOKEN_SECRET!
         );
 
-        return res.status(201).header("auth-token", token).send({message: "Login successful", token});
+        return res.status(201).header("auth-token", token).send({
+            message: "Login successful", 
+            token, 
+            user: {
+                name: user.name, 
+                email: user.email,
+                _id: user._id
+            }
+        });
     } catch(err) {
         return next(new ErrorHandler(422, err.toString()));
     }    
