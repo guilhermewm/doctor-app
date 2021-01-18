@@ -2,9 +2,10 @@ import React, { lazy, Suspense } from 'react';
 import './App.scss';
 
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import { Spinner } from 'react-bootstrap';
+import GuardedRoute from './Components/GuardRoute/GuardRoute';
+import SpinnerWrapper from './Components/SpinnerWrapper/SpinnerWrapper';
 
-const Home = lazy(() => import('./pages/Home/Index'));
+const Home = lazy(() => import('./pages/Case/Index'));
 const Login = lazy(() => import('./pages/Login/Index'));
 const NotFound = lazy(() => import('./navigation/NotFound'));
 
@@ -12,13 +13,11 @@ function App() {
   return (
     <BrowserRouter>
       <Suspense fallback={
-        <Spinner animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
+        <SpinnerWrapper />
       }>
 				<Switch>  
 					<Route exact path="/login" component={Login}/>
-					<Route exact path="/" component={Home}/>
+					<GuardedRoute path='/' component={Home} />
 					<Route component={NotFound} />
 				</Switch>
       </Suspense>

@@ -1,19 +1,22 @@
 .case {
   padding: 30px 0px;
-
+  text-align: center;
+  
   > .row {
     > .col {
       min-width: 300px;     
       > .card {
         > .card-body {
-          > .card-text {
-            form {              
-              text-align: right;
-            }
+          form {              
+            text-align: right;
           }
         }
       } 
     }
+  }
+
+  .case-description {
+    text-align: justify;
   }
 }
 

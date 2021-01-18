@@ -1,0 +1,15 @@
+.spinner {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  padding-top: 40vh;
+  background: #7676764f;
+  z-index: 999;
+
+  > .spinner-border {
+    width: 5rem !important;
+    height: 5rem !important;
+  }
+}
+
