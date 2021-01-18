@@ -12,7 +12,7 @@ To run the project open the README into the frontend folder
 
 NodeJS, TypeScript, MongoDB
 
-To run the project open the README into the backend folder
+To run the project open the README into the api folder
 
 The MongoDB is running in the Cloud.
 

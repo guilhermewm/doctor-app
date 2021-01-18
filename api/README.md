@@ -1,13 +1,3 @@
-## Installation
-
-`npm install`
-
-## Development
-
-`npm run start`
-
-It will run the server in the port: 4000
-
 # Welcome to the api app documentation
 
 ## How to run?
@@ -22,6 +12,8 @@ It will install all the dependencies
 
 It will run the server, MongoDB will run into the Cloud
 
+It will run the server in the port: 4000
+
 `npm test`
 
 To run all the tests
@@ -32,7 +24,7 @@ To run all the tests and see the coverage
 
 # API
 
-## User
+## /user
 
 ### POST /user/register
 
@@ -57,11 +49,11 @@ It will return an auth-token, you will use it in the header of the other service
 
 ```javascript
 { 
-    "auth-user": "token",
+    "auth-user": "token"
 }
 ```
 
-## Cases
+## /cases
 
 ### GET /cases
 
@@ -85,7 +77,7 @@ It will create a case
 
 ```javascript
 { 
-    "description": "text",
+    "description": "text"
 }
 ```
 
@@ -107,7 +99,7 @@ body:
 
 It will delete a case using the id
 
-## Conditions
+## /conditions
 
 ### GET /conditions
 
