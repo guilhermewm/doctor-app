@@ -6,6 +6,8 @@
 
 `npm run start`
 
+It will run the server in the port: 4000
+
 # Welcome to the api app documentation
 
 ## How to run?
