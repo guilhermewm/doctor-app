@@ -6,6 +6,8 @@ import * as Yup from "yup";
 import SpinnerWrapper from '../../Components/SpinnerWrapper/SpinnerWrapper';
 import { doLogin } from '../../request/request';
 import ModalWrapper from '../../Components/ModalWrapper/ModalWrapper';
+import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage';
+
 import { User } from './type';
 
 import './styles.scss';
@@ -69,7 +71,7 @@ const Login: React.FC = () => {
 										<Form.Control type="email" placeholder="Enter email" {...field} />
 									)}
 								</Field>
-								{touched.email && errors.email && <div>{errors.email}</div>}
+								{touched.email && errors.email && <ErrorMessage text={errors.email} />}
 							</Form.Group>
 							<Form.Group controlId="formBasicPassword">
 								<Form.Label>Password</Form.Label>
@@ -78,7 +80,7 @@ const Login: React.FC = () => {
 										<Form.Control type="password" placeholder="Password" {...field} />
 									)}
 								</Field>
-								{touched.password && errors.password && <div>{errors.password}</div>}
+								{touched.password && errors.password && <ErrorMessage text={errors.password} />}
 							</Form.Group>
 							<Button variant="dark" type="submit">
 								Login
